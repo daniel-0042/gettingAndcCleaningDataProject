@@ -9,7 +9,7 @@ library(data.table)
 
 
 #load data from seperate files
-all.data <- fread("tidy UCI HAR Dataset.csv", header = T)
+all.data <- fread("tidy UCI HAR Dataset.txt", header = T)
 
 mean.of.all.data<-all.data%>%group_by(subject,activity)%>%
                              summarize_each(funs(mean))%>%
@@ -17,4 +17,5 @@ mean.of.all.data<-all.data%>%group_by(subject,activity)%>%
                              arrange(subject,activity) %>%
                              collect() 
 
-write.csv(mean.of.all.data, "means of tidy UCI HAR Dataset.csv", row.names = F)
+write.table(mean.of.all.data, "means of tidy UCI HAR Dataset.txt", row.names = F)
+

@@ -36,12 +36,5 @@ all.data <- arrange(all.data,  subject)
 colnames(all.data) <- gsub("-", ".", colnames(all.data))
 colnames(all.data) <- gsub("[\\(\\)]", "", colnames(all.data))
 
-write.csv(all.data, "tidy UCI HAR Dataset.csv", row.names = F)
+write.table(all.data, "tidy UCI HAR Dataset.txt", row.names = F)
 
-mean.of.all.data<-all.data%>%group_by(subject,activity)%>%
-                             summarize_each(funs(mean))%>%
-                             ungroup() %>%
-                             arrange(subject,activity) %>%
-                             collect() 
-
-write.csv(mean.of.all.data, "means of tidy UCI HAR Dataset.csv", row.names = F)
